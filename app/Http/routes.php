@@ -19,8 +19,13 @@ Route::get('/', function () {
 
 Route::get('/staff/{id}/in_photo',function($id){
     $staff  =   Staff::findOrFail($id);
-    if($staff->photos()->create(['path'=>'example.jpg'])){
+    if($staff->photos()->create(['path'=>'example1.jpg'])){
         return 'Insert success';
     }
     return 'Insert fail';
+});
+
+Route::get('/staff/{id}/photos',function($id){
+    $staff  =   Staff::findOrFail($id);
+    return $staff->photos;
 });
