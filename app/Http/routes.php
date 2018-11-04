@@ -1,5 +1,6 @@
 <?php
-
+use App\Model\Staff;
+use App\Model\Photo;
 /*
 |--------------------------------------------------------------------------
 | Application Routes
@@ -13,4 +14,13 @@
 
 Route::get('/', function () {
     return view('welcome');
+});
+
+
+Route::get('/staff/{id}/in_photo',function($id){
+    $staff  =   Staff::findOrFail($id);
+    if($staff->photos()->create(['path'=>'example.jpg'])){
+        return 'Insert success';
+    }
+    return 'Insert fail';
 });
