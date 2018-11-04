@@ -29,3 +29,14 @@ Route::get('/staff/{id}/photos',function($id){
     $staff  =   Staff::findOrFail($id);
     return $staff->photos;
 });
+
+Route::get('/staff/{id}/up_photo/{photo_id}',function($id,$photo_id){
+    $staff  =   Staff::findOrFail($id);
+    return $staff->photos()->where('id',$photo_id)->update(['path'=>'update2.jpg']);
+});
+
+
+Route::get('/staff/{id}/del_photo/{photo_id}',function($id,$photo_id){
+    $staff  =   Staff::findOrFail($id);
+    return $staff->photos()->where('id',$photo_id)->delete();
+});
